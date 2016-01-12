@@ -151,17 +151,9 @@
                     }
                 } else {
                     if (tzEnabled) {
-                        currentZoneOffset = moment().tz(options.timeZone).utcOffset();
-                        incomingZoneOffset = moment(d, parseFormats, options.useStrict).utcOffset();
-                        if (incomingZoneOffset !== currentZoneOffset) {
-                            timeZoneIndicator = moment().tz(options.timeZone).format('Z');
-                            dateWithTimeZoneInfo = moment(d, parseFormats, options.useStrict).format('YYYY-MM-DD[T]HH:mm:ss') + timeZoneIndicator;
-                            returnMoment = moment(dateWithTimeZoneInfo, parseFormats, options.useStrict).tz(options.timeZone);
-                        } else {
-                            returnMoment = moment(d, parseFormats, options.useStrict).tz(options.timeZone);
-                        }
+                        returnMoment = moment.tz(d, parseFormats, options.timeZone);
                     } else {
-                        returnMoment = moment(d, parseFormats, options.useStrict);
+                       returnMoment = moment(d, parseFormats, options.useStrict);
                     }
                 }
                 return returnMoment;
@@ -1312,8 +1304,8 @@
                 input.on({
                     'change': change,
                     'blur': options.debug ? '' : hide,
-                    'keydown': keydown,
-                    'keyup': keyup,
+                    // 'keydown': keydown,
+                    // 'keyup': keyup,
                     'focus': options.allowInputToggle ? show : ''
                 });
 
@@ -1331,8 +1323,8 @@
                 input.off({
                     'change': change,
                     'blur': blur,
-                    'keydown': keydown,
-                    'keyup': keyup,
+                    // 'keydown': keydown,
+                    // 'keyup': keyup,
                     'focus': options.allowInputToggle ? hide : ''
                 });
 
